@@ -1,0 +1,31 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "license": "MIT",
+  "Author": "Junhao Hu",
+  "scripts": {
+    "test:clean": "rm -rf videos screenshot playwright-report output test-results",
+    "test:webkit": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=webkit && npx playwright show-report",
+    "test:api": "npm run test:clean && npx playwright test tests/api/*.spec.ts --project=webkit && npx playwright show-report",
+    "test:chromium": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=chromium && npx playwright show-report",
+    "test:firefox": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox && npx playwright show-report",
+    "test:all": "npm run test:clean && npx playwright test tests/**/*.spec.ts --headed && npx playwright show-report",
+    "codegen": "npx playwright codegen https://keypay.yourpayroll.com.au/ ",
+    "test:ui:debug": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox --ui"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.2.6",
+    "figlet": "^1.5.2",
+    "fs-extra": "^10.0.1",
+    "kleur": "^4.1.4",
+    "xml-formatter": "^3.4.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.36.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^18.15.11",
+    "dotenv": "^11.0.0",
+    "node-fetch": "^2.6.2",
+    "ajv": "^8.12.0"
+  }
+}
