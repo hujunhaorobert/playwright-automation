@@ -10,7 +10,6 @@
     "test:chromium": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=chromium && npx playwright show-report",
     "test:firefox": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox && npx playwright show-report",
     "test:all": "npm run test:clean && npx playwright test tests/**/*.spec.ts --headed && npx playwright show-report",
-    "codegen": "npx playwright codegen https://keypay.yourpayroll.com.au/ ",
     "test:ui:debug": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox --ui"
   },
   "dependencies": {
