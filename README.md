@@ -6,7 +6,7 @@
    
     2. Go to playwright-automation folder
 
-    3. Install npm (or yarn) if not done yet, but not mix using npm or yarn
+    3. Install node, npm (or yarn) if not done yet, but not mix using npm or yarn
 
     4. Install all dependencies by CLI
    
