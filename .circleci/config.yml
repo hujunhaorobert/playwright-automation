@@ -16,6 +16,8 @@ jobs:
           command: npm run test
       - store_test_results:
           path: results.xml
+      - store_test_results:
+          path: output/*.*
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
