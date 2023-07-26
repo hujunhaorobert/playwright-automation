@@ -17,7 +17,7 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /output
+          path: /root/project/output
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
