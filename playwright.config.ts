@@ -22,9 +22,13 @@ export default defineConfig({
   workers: 3,
   // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  // reporter: 'html',
+  reporter: process.env.CI ? [["junit", {outputFile: "results.xml"}]] 
+                           : [["json",  {outputFile: "report.json"}], 
+                              ["html", {open: "on-failure"}]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    headless: process.env.CI ? true : false,
     /* All requests we send go to this API endpoint. */
     baseURL: 'https://api.weatherapi.com',
     extraHTTPHeaders: {
@@ -32,9 +36,9 @@ export default defineConfig({
       'Accept-Encoding': 'gzip, deflate, br',
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure', // on | off | only-on-failure
-    // video: 'retain-on-failure',
+    trace: process.env.CI ? "off" : 'on-first-retry',
+    screenshot: process.env.CI ? "off" : 'only-on-failure', // on | off | only-on-failure
+    video: process.env.CI ? "off" : 'retain-on-failure',
     // launchOptions: {
     //   args: ["--start-maximized"],
     //   slowMo: 500
