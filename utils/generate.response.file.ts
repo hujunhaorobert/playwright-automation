@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 
-import { showGenerate, showCreate, showUpdate, showError, checkIfDirExistElseMakeDir, checkExistence } from './index';
+import { showGenerate, showCreate, showUpdate, showError, checkIfDirExistElseMakeDir, checkExistence, showInfo } from './index';
 
 export function generateResponseFile(fileContent: string, filePath:string, fileNameWithExt: string): void | Promise<void> {
     showGenerate(fileNameWithExt);
@@ -14,6 +14,7 @@ export function generateResponseFile(fileContent: string, filePath:string, fileN
 
 export function createFile(filePath: string, fileName: string, fileContent: string, fileAlreadyExists = false): void {
     const filepath: string = process.cwd() + `${filePath}/${fileName}`;
+    showInfo(filepath);
     fs.writeFile(filepath, fileContent, (error: Error) => {
         if (!error && !fileAlreadyExists) return showCreate(fileName, filePath);
         if (!error && fileAlreadyExists) return showUpdate(fileName, filePath);
