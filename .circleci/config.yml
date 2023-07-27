@@ -6,7 +6,6 @@ jobs:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0-jammy
     # Steps to the job
-    parallelism: 1
     steps:
       - checkout
       - run:
