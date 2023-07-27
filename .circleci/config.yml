@@ -18,6 +18,10 @@ jobs:
           path: results.xml
       - store_artifacts:
           path: /root/project/output
+          destination: output-file
+      - store_artifacts:
+          path: /root/project/playwright-report
+          destination: test-report
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
