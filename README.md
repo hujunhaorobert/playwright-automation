@@ -54,4 +54,4 @@
        1. The run-test job will be triggered
        2. Test report will be generated and all test artifacts will be uploaded to S3.
        3. Test result notification will be sent to Slack channel automatically.
-<img width="890" alt="Screenshot 2023-07-27 at 4 28 34 pm" src="https://github.com/hujunhaorobert/playwright-automation/assets/10079887/19cbaab5-6cd1-4221-b7bd-a6d771c6df64">
+<img width="400" alt="Screenshot 2023-07-27 at 5 36 05 pm" src="https://github.com/hujunhaorobert/playwright-automation/assets/10079887/e80ffc82-7fe4-4b66-9808-f753fa6591c4">
