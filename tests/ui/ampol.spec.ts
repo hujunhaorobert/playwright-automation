@@ -42,7 +42,7 @@ test.describe("Part 2: UI test", async () => {
 
   test("Optional/Bonus - Scenario B: Sign Up on energy page and intercept network request, export response to a .json file", async () => {
     const browser = await chromium.launch({
-      headless: false,
+      headless: process.env.CI ? true : false,
       slowMo: 200,
     });
     const context = await browser.newContext({
