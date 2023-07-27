@@ -31,9 +31,9 @@ jobs:
           mentions: "@junhao.hu"
           template: basic_fail_1
       - twilio/sendsms:
-          body: Successful message from Twilio
+          body: GitHub PR trigger CircleCI Playwright automation test successful - from Twilio
       - twilio/alert:
-          body: Send error message
+          body: GitHub PR trigger CircleCI Playwright automation test failed - from Twilio
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
