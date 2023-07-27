@@ -48,8 +48,8 @@
 
     Test videos or screenshots will be generated and persisted under videos or screenshot folder during the test run. They will be cleaned up before rerun the test CLI.
 
-### CI/CD set up, test report/artifacts archive, test result notification
-    CirculeCI has been enabled for this Github project. Once a new git commit is pushed and merged to main branch:
+### CI set up, test report & test artifacts archive, test result notification
+    CI build on CircleCI has been configed for this GitHub project. Once a new git commit is pushed and merged to main branch:
 
        1. The run-test job will be triggered
        2. Test report will be generated and all test artifacts will be uploaded
