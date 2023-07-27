@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.12.5
 jobs:
   run-test:
     docker:
@@ -20,6 +22,13 @@ jobs:
       - store_artifacts:
           path: /root/project/playwright-report
           destination: test-report
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          mentions: "@junhao.hu"
+          template: basic_fail_1
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
