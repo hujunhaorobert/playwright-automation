@@ -14,11 +14,9 @@ jobs:
       - run:
           name: Run tests
           command: npm run test:ci
-      - store_test_results:
-          path: results.xml
       - store_artifacts:
           path: /root/project/output
-          destination: output-file
+          destination: output
       - store_artifacts:
           path: /root/project/playwright-report
           destination: test-report
