@@ -24,7 +24,7 @@ jobs:
           destination: test-report
       - slack/notify:
           event: pass
-          mentions: "<D03NTNEMULE>"
+          mentions: "<@D03NTNEMULE>"
           template: basic_success_1
       - slack/notify:
           event: fail
