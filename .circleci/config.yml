@@ -1,8 +1,9 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.12.5
+  twilio: circleci/twilio@1.0.0
 jobs:
-  run-test:
+  run-test-and-notify:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0-jammy
     # Steps to the job
@@ -29,8 +30,12 @@ jobs:
           event: fail
           mentions: "@junhao.hu"
           template: basic_fail_1
+      - twilio/sendsms:
+          body: Successful message from Twilio
+      - twilio/alert:
+          body: Send error message
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
     jobs:
-      - run-test
+      - run-test-and-notify
