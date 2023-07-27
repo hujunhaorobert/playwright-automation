@@ -5,8 +5,8 @@
   "Author": "Junhao Hu",
   "scripts": {
     "postinstall": "npx playwright install",
-    "test": "npx playwright test tests/api/*.spec.ts --project=webkit",
-    "test:clean": "rm -rf videos screenshot playwright-report output test-results",
+    "test:ci": "npx playwright test tests/**/*.spec.ts",
+    "test:clean": "rm -rf report.json videos screenshot playwright-report output test-results",
     "test:webkit": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=webkit && npx playwright show-report",
     "test:api": "npm run test:clean && npx playwright test tests/api/*.spec.ts --project=webkit && npx playwright show-report",
     "test:chromium": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=chromium && npx playwright show-report",

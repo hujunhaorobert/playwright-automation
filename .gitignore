@@ -7,4 +7,5 @@ test-results/
 videos/
 output/
 .env
+report.json
 

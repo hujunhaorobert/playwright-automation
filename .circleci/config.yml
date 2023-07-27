@@ -13,7 +13,7 @@ jobs:
           command: npm ci
       - run:
           name: Run tests
-          command: npm run test
+          command: npm run test:ci
       - store_test_results:
           path: results.xml
       - store_artifacts:
