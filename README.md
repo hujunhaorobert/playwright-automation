@@ -36,7 +36,7 @@
     npm run test:all  
 
     
-### How to check HTML test report
+### How to check HTML test report locally
     Normally the test will generate html report finally, to open the test report in the last run:
       
         npx playwright show-report
@@ -47,3 +47,10 @@
         2. post-api-ampolenergy-onboarding-v1-lead-response.json, created by UI test Scenario B
 
     Test videos or screenshots will be generated and persisted under videos or screenshot folder during the test run. They will be cleaned up before rerun the test CLI.
+
+### CI/CD set up
+    CirculeCI has been enabled for this Github project. Once a new git commit is pushed and merged to main branch:
+
+       1. The run-test job will be triggered
+       2. Test report will be generated and all test artifacts will be uploaded to S3.
+       3. Test result notification will be sent to Slack channel automatically.
