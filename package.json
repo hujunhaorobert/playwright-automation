@@ -6,13 +6,14 @@
   "scripts": {
     "postinstall": "npx playwright install",
     "test:ci": "npx playwright test tests/**/*.spec.ts",
-    "test:clean": "rm -rf report.json videos screenshot playwright-report output test-results",
+    "test:clean": "rm -rf report.json result.xml videos screenshot playwright-report output test-results",
     "test:webkit": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=webkit && npx playwright show-report",
     "test:api": "npm run test:clean && npx playwright test tests/api/*.spec.ts --project=webkit && npx playwright show-report",
     "test:chromium": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=chromium && npx playwright show-report",
     "test:firefox": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox && npx playwright show-report",
     "test:all": "npm run test:clean && npx playwright test tests/**/*.spec.ts --headed && npx playwright show-report",
-    "test:ui:debug": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox --ui",
+    "ui:debug": "npm run test:clean && npx playwright test tests/ui/*.spec.ts --headed --project=firefox --ui",
+    "api:debug": "npm run test:clean && npx playwright test tests/api/*.spec.ts --ui",
     "report": "npx playwright show-report"
   },
   "dependencies": {

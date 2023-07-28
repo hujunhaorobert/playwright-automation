@@ -8,4 +8,4 @@ videos/
 output/
 .env
 report.json
-
+results.xml
