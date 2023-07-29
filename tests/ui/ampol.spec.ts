@@ -64,13 +64,12 @@ test.describe("Part 2: UI test", async () => {
     energySignUpPage.interceptNetworkRequest(interceptUrl, "POST");
 
     let leadId = "";
-    let json;
     await page.route(
       interceptUrl,
       async (route) => {
         const response = await route.fetch();
 
-        json = await response.json();
+        const json = await response.json();
         console.log(`<<-Intercepted POST Response json body\n${JSON.stringify(json, null, 2)}`);
         // Write the network response to a JSON file
         await generateResponseFile(
