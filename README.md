@@ -41,9 +41,9 @@
     They will be cleaned up before rerun the test CLI.
 
 ### CI set up, test report & test artifacts archive, test result notification
-    CircleCI is configed for this GitHub project. Once a new git commit is pushed and merged to main branch:
+    CircleCI is configed for this GitHub project. Once a new git commit is pushed and merged:
 
-       1. The run-test job will be triggered
+       1. The run-test-and-notify job will be triggered automatically
        2. Test report will be generated and all test artifacts will be uploaded
        3. Test result notification will be sent to Slack channel automatically
        4. SMS notification will also be sent to mobile phone by Twilio
