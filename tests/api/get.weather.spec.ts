@@ -3,6 +3,7 @@ import { XMLBuilder } from "fast-xml-parser";
 import xmlFormat from "xml-formatter";
 import { generateResponseFile } from "../../utils/generate.response.file";
 import { GetWeatherResponse } from "../../models/types/getWeatherResponse";
+import { CONSTANTS } from "../../config/constants";
 import Ajv, { JSONSchemaType } from "ajv";
 import fs from "fs";
 import dotenv from "dotenv";
@@ -82,8 +83,8 @@ test.describe("Part1: API Test", async () => {
     // collapseContent: True to keep content in the same line as the element. Default to false
     await generateResponseFile(
       xmlFormat(weatherXML, { collapseContent: true }),
-      "/output",
-      `${process.env.EXPORTED_WEATHER_XML_FILE_NAME}`
+      CONSTANTS.OUTPUT_DATA_FOLDER,
+      CONSTANTS.EXPORTED_WEATHER_XML_FILE_NAME
     );
   });
 });

@@ -4,6 +4,7 @@ import AmpChargePage from "../../pages/ampcharge.page";
 import EnergyPage from "../../pages/energy.page";
 import EnergySignUpPage from "../../pages/energy.signup.page";
 import { generateResponseFile } from "../../utils/generate.response.file";
+import { CONSTANTS } from "../../config/constants";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -56,7 +57,7 @@ test.describe("Part 2: UI test", async () => {
     const energySignUpPage = new EnergySignUpPage(page);
 
     // Page jumps to energySignUpPage
-    const interceptUrl = `${process.env.INTERCEPTED_POST_REQUEST_URL}`;
+    const interceptUrl = CONSTANTS.INTERCEPTED_POST_REQUEST_URL;
     await energySignUpPage.goto();
     await energySignUpPage.verifyPageUrl();
     await energySignUpPage.enterSuburbOrPostCodeEditor.fill("4011");
@@ -74,8 +75,8 @@ test.describe("Part 2: UI test", async () => {
         // Write the network response to a JSON file
         await generateResponseFile(
           JSON.stringify(json, null, 2),
-          "/output",
-          `${process.env.EXPORTED_RESPONSE_JSON_FILE_NAME}`
+          CONSTANTS.OUTPUT_DATA_FOLDER,
+          CONSTANTS.EXPORTED_RESPONSE_JSON_FILE_NAME
         );
 
         leadId = json.leadId;
