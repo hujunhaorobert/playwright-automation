@@ -1,4 +1,5 @@
 import { expect, Locator, type Page } from '@playwright/test';
+import { showInfo } from '../utils';
 
 abstract class BasePage {
     constructor(readonly page: Page, readonly url: string) {
@@ -7,7 +8,7 @@ abstract class BasePage {
     }
 
     public async goto(url:string = this.url) {
-        console.log(`Go to ${this.constructor.name} with url=${url}`);
+        showInfo(`Go to ${this.constructor.name} with url=${url}`);
         await this.page.goto(url);
     }
 
@@ -20,7 +21,7 @@ abstract class BasePage {
     }
     
     public async verifyPageUrl(url:string = this.url) {
-        console.log(`Validate ${this.constructor.name} Url is: ${this.url}`);
+        showInfo(`Validate ${this.constructor.name} Url is: ${this.url}`);
         await expect(this.page).toHaveURL(url);
     }
     
@@ -50,7 +51,7 @@ abstract class BasePage {
 
     public async scroll (args) {
         const {direction, speed} = args;
-        console.log(args);
+        showInfo(args);
         const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
         const scrollHeight = () => document.body.scrollHeight;
         const start = direction === "down" ? 0 : scrollHeight();
@@ -72,7 +73,7 @@ abstract class BasePage {
     public interceptNetworkRequest (targetUrl: string, method: string): void {
         this.page.on('request', req => {
             if ( req.url() === targetUrl && req.method() === method ) {
-              console.log(`->> : ${req.method()} ${req.resourceType()} ${req.url()} ${JSON.stringify(req.headers(), null, 2)}`);
+              showInfo(`->> : ${req.method()} ${req.resourceType()} ${req.url()} ${JSON.stringify(req.headers(), null, 2)}`);
         }});
     }
 };
