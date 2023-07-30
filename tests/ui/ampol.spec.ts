@@ -1,4 +1,4 @@
-import { test, chromium } from "@playwright/test";
+import { test } from "@playwright/test";
 import HomePage from "../../pages/home.page";
 import AmpChargePage from "../../pages/ampcharge.page";
 import EnergyPage from "../../pages/energy.page";
@@ -41,18 +41,7 @@ test.describe("Part 2: UI test", async () => {
     await energySignUpPage.enterSuburbOrPostCodeEditor.isVisible();
   });
 
-  test("Optional/Bonus - Scenario B: Sign Up on energy page and intercept network request, export response to a .json file", async () => {
-    const browser = await chromium.launch({
-      headless: process.env.CI ? true : false,
-      slowMo: 200,
-    });
-    const context = await browser.newContext({
-      recordVideo: {
-        dir: "videos/",
-        size: { width: 800, height: 600 },
-      },
-    });
-    const page = await context.newPage();
+  test("Optional/Bonus - Scenario B: Sign Up on energy page and intercept network request, export response to a .json file", async ({ page }) => {
 
     const energySignUpPage = new EnergySignUpPage(page);
 
@@ -78,7 +67,6 @@ test.describe("Part 2: UI test", async () => {
           CONSTANTS.OUTPUT_DATA_FOLDER,
           CONSTANTS.EXPORTED_RESPONSE_JSON_FILE_NAME
         );
-
         leadId = json.leadId;
         console.log(`in Route, leadId = ${leadId}`);
         // Fulfill using the original response
@@ -89,7 +77,8 @@ test.describe("Part 2: UI test", async () => {
     const responsePromise = energySignUpPage.waitForNetworkResponse(interceptUrl);
     await energySignUpPage.viewPlanButton.click();
     const response = await responsePromise;
-
+    console.log(`Intercepted response.status() => ${JSON.stringify(await response.status(), null, 2)}`);
+    console.log(`Intercepted response.headers() => ${JSON.stringify(await response.headers(), null, 2)}`);
     console.log(`Intercepted response.json() => ${JSON.stringify(await response.json(), null, 2)}`);
     console.log(`leadId = ${leadId}`);
 
@@ -98,10 +87,7 @@ test.describe("Part 2: UI test", async () => {
 
     await energySignUpPage.goto(finalUrl);
     await energySignUpPage.waitForPageDomcontentLoaded();
-
     await page.screenshot({ path: "screenshot/signUp.png" });
 
-    await context.close();
-    await browser.close();
   });
 });

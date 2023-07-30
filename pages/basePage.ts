@@ -7,6 +7,7 @@ abstract class BasePage {
     }
 
     public async goto(url:string = this.url) {
+        console.log(`Go to ${this.constructor.name} with url=${url}`);
         await this.page.goto(url);
     }
 
@@ -15,7 +16,7 @@ abstract class BasePage {
     }
     
     public async verifyPageUrl() {
-        console.log(`Page Url is: ${this.url}`);
+        console.log(`Validate ${this.constructor.name} Url is: ${this.url}`);
         await expect(this.page).toHaveURL(this.url);
     }
     
