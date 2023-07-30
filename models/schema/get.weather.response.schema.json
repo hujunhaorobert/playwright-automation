@@ -22,7 +22,7 @@
       "properties": {
         "last_updated_epoch": { "type": "integer" },
         "last_updated": { "type": "string" },
-        "temp_c": { "type": "integer" },
+        "temp_c": { "type": "number" },
         "temp_f": { "type": "number" },
         "is_day": { "type": "integer" },
         "condition": { "type": "object",

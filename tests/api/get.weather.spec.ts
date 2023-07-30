@@ -7,6 +7,7 @@ import { CONSTANTS } from "../../config/constants";
 import Ajv, { JSONSchemaType } from "ajv";
 import fs from "fs";
 import dotenv from "dotenv";
+import { showError, showInfo } from "../../utils";
 dotenv.config();
 
 const ajv = new Ajv();
@@ -32,9 +33,7 @@ test.describe("Part1: API Test", async () => {
     expect(getWeatherResponse.status()).toBe(200);
     expect(getWeatherResponse.ok()).toBeTruthy();
     const responseJson = await getWeatherResponse.json();
-    // console.log(
-    //   `GET weather response JSON => \n${JSON.stringify(responseJson, null, 2)}`
-    // );
+    showInfo(`GET weather response JSON => \n${JSON.stringify(responseJson, null, 2)}`);
 
     // validate is a type guard for Response data - type is inferred from getCardDetailsResponseSchema type
     const validate = ajv.compile(getWeatherResponseSchema);
@@ -45,8 +44,7 @@ test.describe("Part1: API Test", async () => {
       expect(responseJson.location.country).toEqual("Australia");
       expect(responseJson.location.tz_id).toEqual("Australia/Sydney");
     } else {
-      console.log(`Note: validate.errors =>`);
-      console.log(validate.errors);
+      showError(`${JSON.stringify(validate.errors)}`);
     }
 
     const toBeExportedWeatherDataJsonSchema = {

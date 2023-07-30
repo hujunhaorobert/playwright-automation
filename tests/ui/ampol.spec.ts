@@ -6,6 +6,7 @@ import EnergySignUpPage from "../../pages/energy.signup.page";
 import { generateResponseFile } from "../../utils/generate.response.file";
 import { CONSTANTS } from "../../config/constants";
 import dotenv from "dotenv";
+import { showInfo } from "../../utils";
 dotenv.config();
 
 test.describe("Part 2: UI test", async () => {
@@ -43,9 +44,7 @@ test.describe("Part 2: UI test", async () => {
   });
 
   test("Optional/Bonus - Scenario B: Sign Up on energy page and intercept network request, export response to a .json file", async ({ page }) => {
-
     const energySignUpPage = new EnergySignUpPage(page);
-
     // Page jumps to energySignUpPage
     const interceptUrl = CONSTANTS.INTERCEPTED_POST_REQUEST_URL;
     await energySignUpPage.goto();
@@ -61,7 +60,7 @@ test.describe("Part 2: UI test", async () => {
         const response = await route.fetch();
 
         const json = await response.json();
-        console.log(`<<-Intercepted POST Response json body\n${JSON.stringify(json, null, 2)}`);
+        showInfo(`<<-Intercepted POST Response json body\n${JSON.stringify(json, null, 2)}`);
         // Write the network response to a JSON file
         await generateResponseFile(
           JSON.stringify(json, null, 2),
@@ -69,7 +68,7 @@ test.describe("Part 2: UI test", async () => {
           CONSTANTS.EXPORTED_RESPONSE_JSON_FILE_NAME
         );
         leadId = json.leadId;
-        console.log(`in Route, leadId = ${leadId}`);
+        showInfo(`in Route, leadId = ${leadId}`);
         // Fulfill using the original response
         await route.fulfill({ response, json });
       }
@@ -78,13 +77,13 @@ test.describe("Part 2: UI test", async () => {
     const responsePromise = energySignUpPage.waitForNetworkResponse(interceptUrl);
     await energySignUpPage.viewPlanButton.click();
     const response = await responsePromise;
-    console.log(`Intercepted response.status() => ${JSON.stringify(await response.status(), null, 2)}`);
-    console.log(`Intercepted response.headers() => ${JSON.stringify(await response.headers(), null, 2)}`);
+    showInfo(`Intercepted response.status() => ${JSON.stringify(await response.status(), null, 2)}`);
+    showInfo(`Intercepted response.headers() => ${JSON.stringify(await response.headers(), null, 2)}`);
     // console.log(`Intercepted response.json() => ${JSON.stringify(await response.json(), null, 2)}`);
-    console.log(`leadId = ${leadId}`);
+    showInfo(`leadId = ${leadId}`);
 
     const finalUrl = `https://energy.ampol.com.au/sign-up/agent?leadid=${leadId}`;
-    console.log(`finalUrl = ${finalUrl}`);
+    showInfo(`finalUrl = ${finalUrl}`);
     await energySignUpPage.goto(finalUrl);
     await energySignUpPage.waitForPageDomcontentLoaded();
     await page.screenshot({ path: "screenshot/signUp.png" });
