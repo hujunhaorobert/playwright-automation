@@ -30,6 +30,7 @@ test.describe("Part 2: UI test", async () => {
 
     // Page jumps to energyPage
     // energyPage seems a Javascript-heavy sites, add waitForLoadState & status attached to avoid flaky test result
+    await energyPage.waitForURL();
     await energyPage.verifyPageUrl();
     await energyPage.waitForPageDomcontentLoaded();
     await energyPage.switchNowButton.waitFor({ state: "attached" });

@@ -15,7 +15,7 @@ abstract class BasePage {
         await this.page.waitForLoadState('domcontentloaded');
     }
 
-    public async waitForURL(url:string) {
+    public async waitForURL(url:string = this.url) {
         await this.page.waitForURL(url);
     }
     
