@@ -7,7 +7,7 @@ import { CONSTANTS } from "../../config/constants";
 import Ajv, { JSONSchemaType } from "ajv";
 import fs from "fs";
 import dotenv from "dotenv";
-import { showError, showInfo } from "../../utils";
+import { showError, showInfo, showSuccess } from "../../utils";
 dotenv.config();
 
 const ajv = new Ajv();
@@ -38,7 +38,7 @@ test.describe("Part1: API Test", async () => {
     // validate is a type guard for Response data - type is inferred from getCardDetailsResponseSchema type
     const validate = ajv.compile(getWeatherResponseSchema);
     if (validate(responseJson)) {
-      console.log("responseJson schema validation is successful");
+      showSuccess("responseJson schema validation is successful");
       expect(responseJson.location.name).toEqual("Sydney");
       expect(responseJson.location.region).toEqual("New South Wales");
       expect(responseJson.location.country).toEqual("Australia");

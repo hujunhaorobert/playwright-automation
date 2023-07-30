@@ -79,7 +79,7 @@ test.describe("Part 2: UI test", async () => {
     const response = await responsePromise;
     showInfo(`Intercepted response.status() => ${JSON.stringify(await response.status(), null, 2)}`);
     showInfo(`Intercepted response.headers() => ${JSON.stringify(await response.headers(), null, 2)}`);
-    // console.log(`Intercepted response.json() => ${JSON.stringify(await response.json(), null, 2)}`);
+    // showInfo(`Intercepted response.json() => ${JSON.stringify(await response.json(), null, 2)}`);
     showInfo(`leadId = ${leadId}`);
 
     const finalUrl = `https://energy.ampol.com.au/sign-up/agent?leadid=${leadId}`;
