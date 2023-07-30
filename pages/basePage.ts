@@ -14,10 +14,14 @@ abstract class BasePage {
     public async waitForPageDomcontentLoaded() {
         await this.page.waitForLoadState('domcontentloaded');
     }
+
+    public async waitForURL(url:string) {
+        await this.page.waitForURL(url);
+    }
     
-    public async verifyPageUrl() {
+    public async verifyPageUrl(url:string = this.url) {
         console.log(`Validate ${this.constructor.name} Url is: ${this.url}`);
-        await expect(this.page).toHaveURL(this.url);
+        await expect(this.page).toHaveURL(url);
     }
     
     public async assertWebElementToBeVisible(elementLocator: Locator) {

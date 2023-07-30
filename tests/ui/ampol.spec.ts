@@ -84,7 +84,6 @@ test.describe("Part 2: UI test", async () => {
 
     const finalUrl = `https://energy.ampol.com.au/sign-up/agent?leadid=${leadId}`;
     console.log(`finalUrl = ${finalUrl}`);
-
     await energySignUpPage.goto(finalUrl);
     await energySignUpPage.waitForPageDomcontentLoaded();
     await page.screenshot({ path: "screenshot/signUp.png" });
