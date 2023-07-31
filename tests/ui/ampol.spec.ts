@@ -24,17 +24,17 @@ test.describe("Part 2: UI test", async () => {
 
     // Page jumps to ampChargePage
     await ampChargePage.verifyPageUrl();
-    // ampChargePage seems a Javascript-heavy sites, add waitForLoadState & status attached to avoid flaky test result
+    // ampChargePage seems a Javascript-heavy sites, add waitForLoadState & state attached to avoid flaky test result
     await ampChargePage.waitForPageDomcontentLoaded();
-    await ampChargePage.ampolEnergyIcon.waitFor({ state: "attached" });
+    await ampChargePage.waitForElementStateAttached(ampChargePage.ampolEnergyIcon);
     await ampChargePage.ampolEnergyIcon.click();
 
     // Page jumps to energyPage
-    // energyPage seems a Javascript-heavy sites, add waitForLoadState & status attached to avoid flaky test result
+    // energyPage seems a Javascript-heavy sites, add waitForLoadState & state attached to avoid flaky test result
     await energyPage.waitForURL();
     await energyPage.verifyPageUrl();
     await energyPage.waitForPageDomcontentLoaded();
-    await energyPage.switchNowButton.waitFor({ state: "attached" });
+    await energyPage.waitForElementStateAttached(energyPage.switchNowButton);
     await energyPage.switchNowButton.click();
 
     // Page jumps to energySignUpPage
