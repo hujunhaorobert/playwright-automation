@@ -9,7 +9,7 @@
         npm install
 
 
-### How to run UI test on different browser engine(chromium | webkit | firefox)
+### How to run UI test on different browser engine(chromium | webkit | firefox) locally
   
     1. Run the UI test on chromium
        npm run test:chromium
@@ -18,12 +18,12 @@
     3. Run the UI test on firefox
        npm run test:firefox
 
-### How to run API test
-
+### How to run API test locally
+    Please set WEATHER_API_KEY in {{project-root-folder}}\.env firstly
     npm run test:api
 
-### How to run all test cases
-   
+### How to run all test cases locally
+    Please refer to api test and set .env firstly
     npm run test:all  
 
     
