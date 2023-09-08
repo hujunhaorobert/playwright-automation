@@ -6,7 +6,7 @@ import { showInfo } from "../../utils";
 dotenv.config();
 
 test.describe("Visit ACS home page", async () => {
-  test("Scenario A: Login Ampol home page, user journey of page jumping -> ampcharge -> energy -> sign up ", async ({ page }) => {
+  test("Scenario A: Login ACS home page", async ({ page }) => {
     const acsHomePage = new AcsHomePage(page);
     // const ampChargePage = new AmpChargePage(page);
     // const energyPage = new EnergyPage(page);
